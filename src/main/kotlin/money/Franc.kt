@@ -1,6 +1,5 @@
 package money
 
-class Franc(private val amount: Int) {
+class Franc(amount: Int) : Money(amount) {
     fun times(multiplier: Int) = Franc(amount * multiplier)
-    override fun equals(other: Any?): Boolean = amount == (other as? Franc)?.amount
 }
