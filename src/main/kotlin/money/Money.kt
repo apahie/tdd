@@ -1,8 +1,9 @@
 package money
 
-class Money(private val amount: Int, private val currency: String) : Expression {
+class Money(internal val amount: Int, private val currency: String) : Expression {
     fun times(multiplier: Int) = Money(amount * multiplier, currency)
-    fun plus(addend: Money) : Expression = Money(amount + addend.amount, currency)
+    fun plus(addend: Money) : Expression = Sum(this, addend)
+    override fun reduce(to: String) = this
     fun currency() : String = currency
     override fun equals(other: Any?) : Boolean = other is Money && amount == other.amount && currency() == other.currency()
     override fun toString(): String = "$amount $currency"
