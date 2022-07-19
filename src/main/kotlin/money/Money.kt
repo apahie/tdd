@@ -1,7 +1,7 @@
 package money
 
 class Money(internal val amount: Int, private val currency: String) : Expression {
-    fun times(multiplier: Int) : Expression = Money(amount * multiplier, currency)
+    override fun times(multiplier: Int) : Expression = Money(amount * multiplier, currency)
     override fun plus(addend: Expression) : Expression = Sum(this, addend)
     override fun reduce(bank: Bank, to: String) : Money {
         val rate = bank.rate(currency, to)
